@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.2"/>
+    <arg name="yaw" default="0.0"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(find base_kk_description)/urdf/base_kk.xacro"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -param robot_description -urdf -model base_kk"/>
+
+
+
+    <!-- <arg name="gui" default="True" />
+    <param name="use_gui" value="$(arg gui)" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find example_gazebo_map)/rviz/urdf.rviz" required="true" /> -->
+
+    <include file="$(find base_kk_description)/launch/controller.launch" />
+</launch>

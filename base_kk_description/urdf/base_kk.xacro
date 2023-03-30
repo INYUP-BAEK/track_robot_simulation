@@ -1,0 +1,799 @@
+<?xml version="1.0" ?>
+<robot name="base_kk" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find base_kk_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find base_kk_description)/urdf/base_kk.trans" />
+<xacro:include filename="$(find base_kk_description)/urdf/base_kk.gazebo" />
+<xacro:include filename="$(find base_kk_description)/urdf/_d435i.urdf.xacro"/>
+
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="20.85005174974229"/>
+    <inertia ixx="0.682523" iyy="1.519215" izz="2.077433" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+
+<link name="flipper_FL_1">
+  <inertial>
+    <origin xyz="0.12858921840794638 -0.022948904062242703 -3.6891605502166755e-16" rpy="0 0 0"/>
+    <mass value="0.6203141950299244"/>
+    <inertia ixx="0.000617" iyy="0.007228" izz="0.007069" ixy="1.2e-05" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.24765 0.1923 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_FL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.24765 0.1923 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_FL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="flipper_BL_1">
+  <inertial>
+    <origin xyz="-0.12858921840794627 -0.022948904062242814 -6.106671846484528e-16" rpy="0 0 0"/>
+    <mass value="0.6203141950299244"/>
+    <inertia ixx="0.000617" iyy="0.007228" izz="0.007069" ixy="-1.2e-05" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.24765 0.1923 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_BL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.24765 0.1923 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_BL_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="flipper_FR_1">
+  <inertial>
+    <origin xyz="0.12858921840794615 0.022948904062242564 1.5674530557151288e-16" rpy="0 0 0"/>
+    <mass value="0.6203141950299244"/>
+    <inertia ixx="0.000617" iyy="0.007228" izz="0.007069" ixy="-1.2e-05" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.24765 -0.1923 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_FR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.24765 -0.1923 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_FR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="flipper_BR_1">
+  <inertial>
+    <origin xyz="-0.12858921840794643 0.02294890406224248 7.695472289165998e-16" rpy="0 0 0"/>
+    <mass value="0.6203141950299244"/>
+    <inertia ixx="0.000617" iyy="0.007228" izz="0.007069" ixy="1.2e-05" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.24765 -0.1923 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_BR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.24765 -0.1923 -0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://base_kk_description/meshes/flipper_BR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="flipper_joint_FL" type="continuous">
+  <origin xyz="0.24765 -0.1923 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="flipper_FL_1"/>
+  <axis xyz="-0.0 1.0 0.0"/>
+</joint>
+
+<joint name="flipper_joint_BL" type="continuous">
+  <origin xyz="-0.24765 -0.1923 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="flipper_BL_1"/>
+  <axis xyz="-0.0 1.0 0.0"/>
+</joint>
+
+<joint name="flipper_joint_FR" type="continuous">
+  <origin xyz="0.24765 0.1923 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="flipper_FR_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="flipper_joint_BR" type="continuous">
+  <origin xyz="-0.24765 0.1923 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="flipper_BR_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+  <!-- <xacro:sensor_d435i name="camera" topics_ns="camera" parent="base_link" use_nominal_extrinsics="false" publish_pointcloud="true" add_plug="false">
+    <origin xyz="0 0 1" rpy="0 0.785398 0"/>
+  </xacro:sensor_d435i> -->
+
+    <xacro:include filename="$(find gazebo_continuous_track)/urdf_xacro/macros_track_gazebo.urdf.xacro" />
+
+   <xacro:property name="track_width" value="0.0436"/>
+   <xacro:property name="flipper_width" value="0.04602"/>
+   <xacro:property name="track_radius" value="0.0805"/>
+   <xacro:property name="flipper_radius" value="0.0795"/>
+
+<xacro:property name="track_material">
+        <material>
+            <ambient>0.1 0.1 0.3 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+        </material>
+    </xacro:property>
+
+    <xacro:make_track name="track_left" x="0" y="0.152" mass="20" length="0.495" radius="${track_radius}" width="${track_width}" parent="base_link" sprocket_joint="sprocket_left_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>58</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track>
+
+    <xacro:make_track name="track_right" x="0" y="-0.152" mass="20" length="0.495" radius="${track_radius}" width="${track_width}" parent="base_link" sprocket_joint="sprocket_right_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>58</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track>
+
+
+
+
+
+
+    <xacro:make_front_flipper name="track_FL" x="0.40715" y="-0.2163" mass="1" length="0.319" radius="${track_radius}" dradius="0.044" pitch="0.1144" width="${track_width}" parent="flipper_FL_1" sprocket_joint="sprocket_FL_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_front_flipper>
+
+    <xacro:make_front_flipper name="track_FR" x="0.40715" y="0.2163" mass="1" length="0.319" radius="${track_radius}" dradius="0.044" pitch="0.1144" width="${track_width}" parent="flipper_FR_1" sprocket_joint="sprocket_FR_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_front_flipper>
+
+    <xacro:make_rear_flipper name="track_BR" x="-0.415" y="0.2163" mass="1" length="0.319" radius="0.044" dradius="${flipper_radius}" pitch="-0.1144" width="${track_width}" parent="flipper_BR_1" sprocket_joint="sprocket_BR_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_rear_flipper>
+
+    <xacro:make_rear_flipper name="track_BL" x="-0.415" y="-0.2163" mass="1" length="0.319" radius="0.044" dradius="${flipper_radius}" pitch="-0.1144" width="${track_width}" parent="flipper_BL_1" sprocket_joint="sprocket_BL_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_rear_flipper>
+
+
+
+
+   
+
+
+
+
+    <!-- <xacro:make_track name="track_FL" x="0.40715" y="-0.2163" mass="0.4" length="0.319" radius="${track_radius}" width="${track_width}" parent="flipper_FL_1" sprocket_joint="sprocket_FL_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track>
+
+    <xacro:make_track name="track_FR" x="0.40715" y="0.2163" mass="0.4" length="0.319" radius="${track_radius}" width="${track_width}" parent="flipper_FR_1" sprocket_joint="sprocket_FR_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track>
+
+    <xacro:make_track name="track_BR" x="-0.40715" y="0.2163" mass="0.4" length="0.319" radius="${track_radius}" width="${track_width}" parent="flipper_BR_1" sprocket_joint="sprocket_BR_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track>
+
+    <xacro:make_track name="track_BL" x="-0.40715" y="-0.2163" mass="0.4" length="0.319" radius="${track_radius}" width="${track_width}" parent="flipper_BL_1" sprocket_joint="sprocket_BL_axle" pitch_diameter="0.24">
+        <xacro:insert_block name="track_material" />
+        <pattern>
+            <elements_per_round>39</elements_per_round>
+            <element>
+                <xacro:make_cylinder_element pose="0 0 0.01 ${pi/2} 0 0" length="${track_width}" radius="0.0125">
+                    <xacro:insert_block name="track_material" />
+                </xacro:make_cylinder_element>
+            </element>
+        </pattern>
+    </xacro:make_track> -->
+
+
+ 
+
+    <xacro:macro name="make_wheel_inertia" params="mass radius length">
+        <inertial>
+            <mass value="${mass}" />
+            <!-- assuming axis of cylinder is y, not z -->
+            <inertia ixx="${mass * (radius * radius / 4 + length * length / 12)}" ixy="0" ixz="0" iyy="${mass * radius * radius / 2}" iyz="0" izz="${mass * (radius * radius / 4 + length * length / 12)}" />
+        </inertial>
+    </xacro:macro>
+
+    <link name="sprocket_left">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${track_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{track_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${track_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${track_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{track_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+        <link name="sprocket_right">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${track_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{track_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${track_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${track_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{track_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="sprocket_left_axle" type="continuous">
+        <origin xyz="0.2475 0.152 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="sprocket_left" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="sprocket_right_axle" type="continuous">
+        <origin xyz="0.2475 -0.152 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="sprocket_right" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <transmission name="sprocket_left_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_left_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_left_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="sprocket_right_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_right_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_right_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- idler on the other side of the sprocket -->
+
+    <link name="idler_left">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${track_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${track_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${track_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="idler_right">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${track_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${track_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${track_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="idler_left_axle" type="fixed">
+        <origin xyz="-0.2475 0.152 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="idler_left" />
+    </joint>
+
+    <joint name="idler_right_axle" type="fixed">
+        <origin xyz="-0.2475 -0.152 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="idler_right" />
+    </joint>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link name="sprocket_FL">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${flipper_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${flipper_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="sprocket_FL_axle" type="continuous">
+        <origin xyz="0.40715 0 0" rpy="0 0 0" />
+        <parent link="flipper_FL_1" />
+        <child link="sprocket_FL" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+    <transmission name="sprocket_FL_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_FL_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_FL_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+
+    <link name="idler_FL">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.044" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="idler_FL_axle" type="fixed">
+        <origin xyz="0.319 -0.023 0" rpy="0 0 0" />
+        <parent link="flipper_FL_1" />
+        <child link="idler_FL" />
+    </joint>
+
+
+
+
+
+
+
+
+
+
+<link name="sprocket_FR">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${flipper_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${flipper_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="sprocket_FR_axle" type="continuous">
+        <origin xyz="0.40715 0 0" rpy="0 0 0" />
+        <parent link="flipper_FR_1" />
+        <child link="sprocket_FR" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+    <transmission name="sprocket_FR_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_FR_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_FR_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+
+
+    <link name="idler_FR">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.044" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="idler_FR_axle" type="fixed">
+        <origin xyz="0.319 0.023 0" rpy="0 0 0" />
+        <parent link="flipper_FR_1" />
+        <child link="idler_FR" />
+    </joint>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link name="sprocket_BR">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${flipper_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${flipper_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="sprocket_BR_axle" type="continuous">
+        <origin xyz="-0.40715 0 0" rpy="0 0 0" />
+        <parent link="flipper_BR_1" />
+        <child link="sprocket_BR" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+    <transmission name="sprocket_BR_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_BR_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_BR_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+
+
+    <link name="idler_BR">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="idler_BR_axle" type="fixed">
+        <origin xyz="-0.319 0.023 0" rpy="0 0 0" />
+        <parent link="flipper_BR_1" />
+        <child link="idler_BR" />
+    </joint>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link name="sprocket_BL">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.01 ${flipper_width} 0.1" />
+            </geometry>
+        </visual>
+        <visual>
+            <geometry>
+                <box size="0.1 ${flipper_width} 0.01" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="{flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="sprocket_BL_axle" type="continuous">
+        <origin xyz="-0.40715 0 0" rpy="0 0 0" />
+        <parent link="flipper_BL_1" />
+        <child link="sprocket_BL" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+
+    <transmission name="sprocket_BL_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sprocket_BL_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="sprocket_BL_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+
+
+    <link name="idler_BL">
+        <xacro:make_wheel_inertia mass="0.2" radius="${track_radius}" length="${flipper_width}" />
+
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.044" length="${flipper_width}" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="${track_radius}" length="${flipper_width}" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="idler_BL_axle" type="fixed">
+        <origin xyz="-0.319 -0.023 0" rpy="0 0 0" />
+        <parent link="flipper_BL_1" />
+        <child link="idler_BL" />
+    </joint>
+
+
+
+
+
+
+</robot>
+

@@ -1,0 +1,35 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"flipper_BL_1" [label="flipper_BL_1"];
+"flipper_BR_1" [label="flipper_BR_1"];
+"flipper_FL_1" [label="flipper_FL_1"];
+"idler_FL" [label="idler_FL"];
+"sprocket_FL" [label="sprocket_FL"];
+"flipper_FR_1" [label="flipper_FR_1"];
+"idler_left" [label="idler_left"];
+"idler_right" [label="idler_right"];
+"sprocket_left" [label="sprocket_left"];
+"sprocket_right" [label="sprocket_right"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "flipper_joint_BL" [label="xyz: -0.24765 -0.1923 0 \nrpy: 0 -0 0"]
+"flipper_joint_BL" -> "flipper_BL_1"
+"base_link" -> "flipper_joint_BR" [label="xyz: -0.24765 0.1923 0 \nrpy: 0 -0 0"]
+"flipper_joint_BR" -> "flipper_BR_1"
+"base_link" -> "flipper_joint_FL" [label="xyz: 0.24765 -0.1923 0 \nrpy: 0 -0 0"]
+"flipper_joint_FL" -> "flipper_FL_1"
+"flipper_FL_1" -> "idler_FL_axle" [label="xyz: -0.1595 0 0 \nrpy: 0 -0 0"]
+"idler_FL_axle" -> "idler_FL"
+"flipper_FL_1" -> "sprocket_FL_axle" [label="xyz: 0.1595 0 0 \nrpy: 0 -0 0"]
+"sprocket_FL_axle" -> "sprocket_FL"
+"base_link" -> "flipper_joint_FR" [label="xyz: 0.24765 0.1923 0 \nrpy: 0 -0 0"]
+"flipper_joint_FR" -> "flipper_FR_1"
+"base_link" -> "idler_left_axle" [label="xyz: -0.2475 0.152 0 \nrpy: 0 -0 0"]
+"idler_left_axle" -> "idler_left"
+"base_link" -> "idler_right_axle" [label="xyz: -0.2475 -0.152 0 \nrpy: 0 -0 0"]
+"idler_right_axle" -> "idler_right"
+"base_link" -> "sprocket_left_axle" [label="xyz: 0.2475 0.152 0 \nrpy: 0 -0 0"]
+"sprocket_left_axle" -> "sprocket_left"
+"base_link" -> "sprocket_right_axle" [label="xyz: 0.2475 -0.152 0 \nrpy: 0 -0 0"]
+"sprocket_right_axle" -> "sprocket_right"
+}

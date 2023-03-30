@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find example_gazebo_map)/launch/map.launch" />
+    <include file="$(find example_gazebo_map)/launch/spawn_robot.launch" />
+</launch>

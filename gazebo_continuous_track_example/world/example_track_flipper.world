@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+    <world name="default">
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+
+        <physics type='ode'>
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1</real_time_factor>
+            <real_time_update_rate>1000</real_time_update_rate>
+        </physics>
+
+        <!-- Global light source -->
+        <include>
+            <uri>model://sun</uri>
+        </include>
+
+        <!-- Example track -->
+        <include>
+            <uri>model://example_track_flipper</uri>
+            <pose>0 0 0.15 0 0 0</pose>
+        </include>
+
+        <!-- Rigid anchor for the track -->
+        <!-->
+        <model name="anchor">
+            <joint name="world_to_track" type="fixed">
+                <parent>world</parent>
+                <child>example_track::body</child>
+            </joint>
+        </model>
+        <!-->
+
+        <!-- camera angle -->
+        <gui fullscreen='0'>
+            <camera name='user_camera'>
+                <pose>2.0 -1.5 1.0 0.0 0.3 2.45</pose>
+                <view_controller>orbit</view_controller>
+            </camera>
+        </gui>
+    </world>
+</sdf>

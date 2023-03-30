@@ -1,0 +1,144 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--                                                                                       -->
+    <!-- macros for making track                                                               -->
+    <!--     * useful when difining entities for ContinuousTrack plugin                        -->
+    <!--     * see gazebo_continuous_track_example/urdf/example_track.urdf.xacro to know usage -->
+    <!--                                                                                       -->
+
+    <xacro:include filename="macros_common_gazebo.urdf.xacro" />
+
+    <!-- macro which expands to plugin definition -->
+
+    <xacro:macro name="make_track_plugin" params="name sprocket_joint:=^ pitch_diameter:=^ length:=^ *pattern">
+        <gazebo>
+            <plugin name="${name}" filename="libContinuousTrack.so">
+                <sprocket>
+                    <joint>${sprocket_joint}</joint>
+                    <pitch_diameter>${pitch_diameter}</pitch_diameter>
+                </sprocket>
+                <trajectory>
+                    <segment>
+                        <joint>${name}_straight_segment_joint0</joint>
+                        <end_position>${length}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint0</joint>
+                        <end_position>${pi}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_straight_segment_joint1</joint>
+                        <end_position>${length}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint1</joint>
+                        <end_position>${pi}</end_position>
+                    </segment>
+                </trajectory>
+                <xacro:insert_block name="pattern" />
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="make_flipper_track_plugin" params="name sprocket_joint:=^ pitch_diameter:=^ length:=^ *pattern">
+        <gazebo>
+            <plugin name="${name}" filename="libContinuousTrack.so">
+                <sprocket>
+                    <joint>${sprocket_joint}</joint>
+                    <pitch_diameter>${pitch_diameter}</pitch_diameter>
+                </sprocket>
+                <trajectory>
+                    <segment>
+                        <joint>${name}_straight_segment_joint0</joint>
+                        <end_position>${length}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint0</joint>
+                        <start_position>${pi}</start_position>
+                        <end_position>${pi}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_straight_segment_joint1</joint>
+                        <end_position>${length}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint1</joint>
+                        <start_position>${pi}</start_position>
+                        <end_position>${pi}</end_position>
+                    </segment>
+                </trajectory>
+                <xacro:insert_block name="pattern" />
+            </plugin>
+        </gazebo>
+        <!-- <gazebo>
+            <plugin name="${name}" filename="libContinuousTrack.so">
+                <sprocket>
+                    <joint>${sprocket_joint}</joint>
+                    <pitch_diameter>${pitch_diameter}</pitch_diameter>
+                </sprocket>
+                <trajectory>
+                    <segment>
+                        <joint>${name}_straight_segment_joint0</joint>
+                        <end_position>0.2</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint0</joint>
+                        <end_position>${0.15708+pi}</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_straight_segment_joint1</joint>
+                        <end_position>0.2</end_position>
+                    </segment>
+                    <segment>
+                        <joint>${name}_arc_segment_joint1</joint>
+                        <end_position>${pi}</end_position>
+                    </segment>
+                </trajectory>
+                <xacro:insert_block name="pattern" />
+            </plugin>
+        </gazebo> -->
+    </xacro:macro>
+
+    <!-- main entry point: macro for making oval track by ContinuousTrack plugin -->
+
+    <xacro:macro name="make_track" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ *material *pattern mu:=^|1000000 min_depth:=^|0.01 implicit_spring_damper:=^|1">
+        <xacro:populate_straight_segments name_prefix="${name}_straight_segment" x="${x - length / 2}" z="${z + radius}" dx="${length}" dz="${-2 * radius}" dpitch="${pi}" mass="${mass / 4}" size_x="${length}" size_y="${width}" size_z="${radius}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_straight_segments>
+
+        <xacro:populate_arc_segments name_prefix="${name}_arc_segment" x="${x + length / 2}" z="${z + radius}" dx="${-length}" dz="${-2 * radius}" dpitch="${pi}" mass="${mass / 4}" length="${width}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_arc_segments>
+
+        <xacro:make_track_plugin name="${name}">
+            <xacro:insert_block name="pattern" />
+        </xacro:make_track_plugin>
+    </xacro:macro>
+
+    <xacro:macro name="make_front_flipper" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ dradius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ *material *pattern mu:=^|1000000 min_depth:=^|0.01 implicit_spring_damper:=^|1">
+        <xacro:populate_slope_segments name_prefix="${name}_straight_segment" x="${x - length / 2}" z="${z+radius}" pitch="${pitch}" dx="${length}" dz="${-2*radius + 0.8*dradius}" dpitch="${pi-pitch*2}" mass="${mass / 4}" size_x="${length}" size_y="${width}" size_z="${radius/2}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_slope_segments>
+
+        <xacro:populate_diffarc_segments name_prefix="${name}_arc_segment" x="${x + length / 2}" z="${z+dradius}" dx="${-length}" dz="${-radius-dradius}" dpitch="${pi}" radius="${radius}" dradius="${dradius}" mass="${mass / 4}" length="${width}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_diffarc_segments>
+
+        <xacro:make_flipper_track_plugin name="${name}">
+            <xacro:insert_block name="pattern" />
+        </xacro:make_flipper_track_plugin>
+    </xacro:macro>
+
+    <xacro:macro name="make_rear_flipper" params="name x:=^|0 y:=^|0 z:=^|0 roll:=^|0 pitch:=^|0 yaw:=^|0 mass:=^ length:=^ radius:=^ dradius:=^ width:=^ parent:=^ sprocket_joint:=^ pitch_diameter:=^ *material *pattern mu:=^|1000000 min_depth:=^|0.01 implicit_spring_damper:=^|1">
+        <xacro:populate_slope_segments name_prefix="${name}_straight_segment" x="${x - length / 2}" z="${z+radius}" pitch="${pitch}" dx="${length}" dz="${-2*dradius + 0.8*radius}" dpitch="${pi-pitch*2}" mass="${mass / 4}" size_x="${length}" size_y="${width}" size_z="${radius/2}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_slope_segments>
+        <xacro:populate_diffarc_segments name_prefix="${name}_arc_segment" x="${x + length / 2}" z="${z+dradius}" dx="${-length}" dz="${-radius-dradius}" dpitch="${pi}" radius="${radius}" dradius="${dradius}" mass="${mass / 4}" length="${width}" count="2">
+            <xacro:insert_block name="material" />
+        </xacro:populate_diffarc_segments>
+        <xacro:make_flipper_track_plugin name="${name}">
+            <xacro:insert_block name="pattern" />
+        </xacro:make_flipper_track_plugin>
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot name="base_kk" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="flipper_joint_FL_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="flipper_joint_FL">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="flipper_joint_FL_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="flipper_joint_BL_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="flipper_joint_BL">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="flipper_joint_BL_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="flipper_joint_FR_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="flipper_joint_FR">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="flipper_joint_FR_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="flipper_joint_BR_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="flipper_joint_BR">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="flipper_joint_BR_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>

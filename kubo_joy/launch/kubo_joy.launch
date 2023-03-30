@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="connect" default="usb"/>
+
+    <node respawn="true" pkg="joy" type="joy_node" name="ps4_joy" >
+        <param name="dev" type="string" value="/dev/input/js0" />
+        <param name="deadzone" value="0.12" />
+    </node>
+
+    <node name="kubo_joy" pkg="kubo_joy" type="kubo_joy" respawn="true" output="screen"/>
+        <param name="connect" type = "string" value="$(arg connect)"/>
+
+</launch>
+

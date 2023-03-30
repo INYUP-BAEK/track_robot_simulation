@@ -1,0 +1,98 @@
+<!-- <launch>
+
+<rosparam file="$(find base_kk_description)/launch/controller.yaml" command="load"/>
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="base_kk" args="sprocket_left_velocity_controller sprocket_right_velocity_controller flipper_joint_FL_position_controller flipper_joint_BL_position_controller flipper_joint_FR_position_controller flipper_joint_BR_position_controller joint_state_controller "/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+  <remap from="/joint_states" to="/base_kk/joint_states"/>
+</node>
+
+</launch> -->
+<launch>
+
+  <!-- <rosparam file="$(find base_k_description)/launch/controller.yaml" command="load"/> flipper_fl_sprocket_axle -->
+  <rosparam>
+         joint_state_controller:
+             type: joint_state_controller/JointStateController
+             publish_rate: 10
+         sprocket_velocity_controller:
+             type: velocity_controllers/JointGroupVelocityController
+             joints:
+              - sprocket_left_axle
+              - sprocket_right_axle
+              - sprocket_FL_axle
+              - sprocket_FR_axle
+              - sprocket_BL_axle
+              - sprocket_BR_axle
+             sprocket_left_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+             sprocket_right_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+             sprocket_FL_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+             sprocket_FR_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+             sprocket_BL_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+             sprocket_BR_axle:
+                 pid: {p: 100.0, i: 0.01, d: 10.0}
+
+         flipper_joint_FL_position_controller:
+             type: effort_controllers/JointPositionController
+             joint: flipper_joint_FL
+             pid: {p: 100.0, i: 0.01, d: 10.0}
+         flipper_joint_FR_position_controller:
+             type: effort_controllers/JointPositionController
+             joint: flipper_joint_FR
+             pid: {p: 100.0, i: 0.01, d: 10.0}
+         flipper_joint_BL_position_controller:
+             type: effort_controllers/JointPositionController
+             joint: flipper_joint_BL
+             pid: {p: 100.0, i: 0.01, d: 10.0}
+         flipper_joint_BR_position_controller:
+             type: effort_controllers/JointPositionController
+             joint: flipper_joint_BR
+             pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+  </rosparam>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="flipper_joint_FL_position_controller flipper_joint_FR_position_controller flipper_joint_BL_position_controller flipper_joint_BR_position_controller sprocket_velocity_controller joint_state_controller "/>
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="flipper_position_controller sprocket_velocity_controller joint_state_controller "/> -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/base_kK/joint_states"/>
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+</launch>
+
+<!-- flipper_joint_FL_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: flipper_joint_FL
+  pid: {p: 10.0, i: 0.1, d: 0.0}
+flipper_joint_FR_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: flipper_joint_FR
+  pid: {p: 10.0, i: 0.1, d: 0.0}
+flipper_joint_BL_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: flipper_joint_BL
+  pid: {p: 10.0, i: 0.1, d: 0.0}
+flipper_joint_BR_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: flipper_joint_BR
+  pid: {p: 10.0, i: 0.1, d: 0.0} -->
+
+           <!-- flipper_position_controller:
+              type: effort_controllers/JointGroupPositionController
+              joints:
+              - flipper_joint_FL
+              - flipper_joint_FR
+              - flipper_joint_BL
+              - flipper_joint_BR
+              flipper_joint_FL:
+                pid: {p: 10.0, i: 0.1, d: 1.0}
+              flipper_joint_FR:
+                pid: {p: 10.0, i: 0.1, d: 1.0}
+              flipper_joint_BL:
+                pid: {p: 10.0, i: 0.1, d: 1.0}
+              flipper_joint_BR:
+                pid: {p: 10.0, i: 0.1, d: 1.0} -->
